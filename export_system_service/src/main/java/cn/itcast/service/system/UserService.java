@@ -22,4 +22,6 @@ public interface UserService {
     void changeRole(String userid, String[] roleIds);
 
     List<String> findRoleIdsByUserId(String id);
+
+    User findByEmail(String email);
 }

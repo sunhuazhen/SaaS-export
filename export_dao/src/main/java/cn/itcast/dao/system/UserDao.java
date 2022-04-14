@@ -21,4 +21,6 @@ public interface UserDao {
     void saveUserAndRole(@Param("userid") String userid,@Param("roleid")  String roleid);
 
     void deleteRoleAndUserByUserId(String userid);
+
+    User findByEmail(String email);
 }
