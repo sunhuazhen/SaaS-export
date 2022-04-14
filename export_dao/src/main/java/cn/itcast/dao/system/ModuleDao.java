@@ -15,4 +15,6 @@ public interface ModuleDao {
     void update(Module module);
 
     void deleteById(String id);
+
+    List<String> findModulesByRoleId(String roleid);
 }

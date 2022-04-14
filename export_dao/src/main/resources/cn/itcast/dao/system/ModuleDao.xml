@@ -123,5 +123,8 @@
     <select id="findById" parameterType="string" resultMap="BaseResultMap">
         select * from ss_module where module_id=#{id}
     </select>
+    <select id="findModulesByRoleId" resultType="java.lang.String" parameterType="string">
+        select module_id from pe_role_module where role_id=#{roleid}
+    </select>
 
 </mapper>

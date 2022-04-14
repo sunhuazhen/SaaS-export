@@ -18,4 +18,6 @@ public interface RoleService {
     void deleteById(String id);
 
     PageInfo findPage(String companyId, int pageNum, int pageSize);
+
+    void updateRoleModule(String roleid, String moduleIds);
 }

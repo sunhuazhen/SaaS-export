@@ -40,10 +40,15 @@ public class ModuleServiceImpl implements ModuleService {
     public void deleteById(String id) {
         moduleDao.deleteById(id);
     }
-
+    @Override
     public PageInfo findPage(int pageNum, int pageSize){
         PageHelper.startPage(pageNum, pageSize);
         List<Module> list = moduleDao.findAll();
         return new PageInfo(list,5);
+    }
+
+    @Override
+    public List<String> findModulesByRoleId(String roleid) {
+        return moduleDao.findModulesByRoleId(roleid);
     }
 }

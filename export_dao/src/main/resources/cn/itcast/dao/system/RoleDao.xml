@@ -92,4 +92,12 @@
     <delete id="deleteById" parameterType="string">
         delete from pe_role where role_id=#{id}
     </delete>
+    <!--根据角色id删除中间表中的数据-->
+    <delete id="deleteRoleAndModuleByRoleId" parameterType="string">
+        delete from pe_role_module where role_id=#{roleid}
+    </delete>
+    <!--向角色模块中间表中保存数据-->
+    <insert id="saveRoleAndModule" parameterType="map">
+        insert into pe_role_module(role_id,module_id) values (#{roleId},#{moduleid})
+    </insert>
 </mapper>

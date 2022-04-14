@@ -17,4 +17,6 @@ public interface ModuleService {
     void deleteById(String id);
 
     PageInfo findPage(int pageNum, int pageSize);
+
+    List<String> findModulesByRoleId(String roleid);
 }

@@ -43,7 +43,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
 
-
+    @Override
     public PageInfo findPage(String companyId,int pageNum, int pageSize){
         PageHelper.startPage(pageNum, pageSize);
         List<Role> list = roleDao.findAll(companyId); //表面上是查询所有，但是在执行select查询之前会根据分页拦截器把sql语句做了处理，
@@ -51,5 +51,14 @@ public class RoleServiceImpl implements RoleService {
         return new PageInfo(list,5);
     }
 
-    //TODO 2019-11-18 立下flag  5天后去网站 https://www.cmd5.com  查询此密码b9624cad1a4c522e9d458f42c6c6183f
+    @Override
+    public void updateRoleModule(String roleid, String moduleIds) {
+        roleDao.deleteRoleAndModuleByRoleId(roleid);
+        String moduleId[] = moduleIds.split(",");
+        for (String s : moduleId) {
+            roleDao.saveRoleAndModule(roleid,s);
+        }
+    }
+
+
 }
