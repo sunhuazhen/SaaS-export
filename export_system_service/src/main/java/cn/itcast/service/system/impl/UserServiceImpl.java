@@ -17,6 +17,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
+    public static void main(String[] args) {
+        System.out.println(new Md5Hash("123456","admin@export.com",2).toString());
+        System.out.println(new Md5Hash("123456","laowang@export.com",2).toString());
+        System.out.println(new Md5Hash("123456","xiaowang@export.com",2).toString());
+        System.out.println(new Md5Hash("123456","xiaoer@export.com",2).toString());
+    }
+
     @Override
     public List<User> findAll(String companyId) {
         return userDao.findAll(companyId);

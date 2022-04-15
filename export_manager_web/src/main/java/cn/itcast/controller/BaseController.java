@@ -1,5 +1,6 @@
 package cn.itcast.controller;
 
+import cn.itcast.domain.system.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
@@ -15,19 +16,29 @@ public class BaseController {
     @Autowired
     protected HttpSession session;
 
+   protected User getUser(){
+       return (User) session.getAttribute("loginUser");
+   }
+
     /**
-     * 获取当前登录人的企业id TODO 以后完成登录代码后会修改此方法
+     * 获取当前登录人的企业id T
      * @return
      */
     protected String getCompanyId(){
-        return "1";
+      if (getUser()!=null){
+          return getUser().getCompanyId();
+      }
+      return null;
     }
     /**
-     * 获取当前登录人的企业名称 TODO 以后完成登录代码后会修改此方法
+     * 获取当前登录人的企业名称
      * @return
      */
     protected String getCompanyName(){
-        return "大脸猫皮具外贸有限公司";
+       if (getUser()!=null){
+           return getUser().getCompanyName();
+       }
+       return null;
     }
 
 }

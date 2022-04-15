@@ -17,4 +17,8 @@ public interface ModuleDao {
     void deleteById(String id);
 
     List<String> findModulesByRoleId(String roleid);
+
+    List<Module> findByBelong(Integer belong);
+
+    List<Module> findByUserId(String userid);
 }
