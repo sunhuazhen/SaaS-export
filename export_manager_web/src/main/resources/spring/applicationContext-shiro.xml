@@ -8,8 +8,15 @@
 		http://www.springframework.org/schema/aop
 		http://www.springframework.org/schema/aop/spring-aop.xsd">
 
+
+    <bean id="myPerms" class="cn.itcast.filter.MyPermsFilter"/>
     <!--    filter-name这个名字的值来自于web.xml中filter的名字-->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="filters">
+            <map>
+                <entry key="myPerms" value-ref="myPerms"/>
+            </map>
+        </property>
         <property name="securityManager" ref="securityManager"/>
         <!--        登录页面,如果没有登录,访问的方法或者页面,直接跳转到这个页面-->
         <property name="loginUrl" value="/login.jsp"/>
@@ -24,6 +31,8 @@
                 /make/** = anon
                 /css/** = anon
                 /login.do = anon
+<!--                当前登录用户,有"企业管理权限"才能访问/company/list.do方法-->
+                /company/list.do = myPerms["部门管理","删除部门"]
                 /** = authc
             </value>
         </property>
@@ -32,8 +41,10 @@
   <bean id="SaasRealm" class="cn.itcast.realm.SaasRealm"/>
 -->
     <bean id="saasRealm" class="cn.itcast.realm.SaasRealm"/>
+    <bean id="memoryCacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/>
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
          <property name="realm" ref="saasRealm"/>
+        <property name="cacheManager" ref="memoryCacheManager"/>
     </bean>
     <!-- 安全管理器 -->
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">

@@ -6,6 +6,7 @@ import cn.itcast.service.company.CompanyService;
 import cn.itcast.vo.PageBean;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,12 +20,14 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/company")
+@RequiresPermissions("企业管理")//
 public class CompanyController extends BaseController {
 
     @Autowired
     private CompanyService companyService;
 
     @RequestMapping(value = "/list" ,name = "展示企业列表数据")
+//    @RequiresPermissions("企业管理")//有"企业管理"权限才能访问这个方法
     public String findAll(@RequestParam(name="page" ,defaultValue = "1") int pageNum, @RequestParam(name="pageSize" ,defaultValue = "10")int pageSize){
 //        List<Company> companyList = companyService.findAll();
 //        PageBean page = companyService.findPage(pageNum,pageSize);
