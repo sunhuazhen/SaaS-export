@@ -46,7 +46,7 @@
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
 
-    <!-- Shiro Security filter  filter-name这个名字的值将来还会在spring中用到
+<!--   Shiro Security filter  filter-name这个名字的值将来还会在spring中用到-->
     <filter>
         <filter-name>shiroFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -59,5 +59,5 @@
         <filter-name>shiroFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-	  -->
+
 </web-app>
