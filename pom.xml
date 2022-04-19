@@ -14,6 +14,8 @@
         <module>export_dao</module>
         <module>export_system_service</module>
         <module>export_manager_web</module>
+        <module>dubbodemo_provider</module>
+        <module>dubbodemo_consumer</module>
     </modules>
 
     <!-- 集中定义依赖版本号 -->
